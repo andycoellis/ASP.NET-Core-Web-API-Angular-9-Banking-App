@@ -1,0 +1,69 @@
+<div class="container main">
+  <h1>{{ title }}</h1>
+  <br>
+
+  <form [formGroup]="customerForm" (ngSubmit)="processCustomer()" #formDir="ngForm" novalidate>
+      <div class="form-group row">
+        <label class="control-label col-md-12">Customer Name</label>
+        <div class="col-md-4"> <input required class="form-control" type="text" formControlName="customerName"> </div>
+        <span class="text-danger" *ngIf="customerName.invalid && formDir.submitted">
+          Required, must be 50 characters or less.
+        </span>
+      </div>
+
+      <div class="form-group row">
+        <label class="control-label col-md-12">Tax File Number</label>
+        <div class="col-md-4"> <input class="form-control" type="text" formControlName="tfn"> </div>
+        <span class="text-danger" *ngIf="tfn.invalid && formDir.submitted">
+          Must be 9 digits.
+        </span>
+      </div>
+
+      <div class="form-group row">
+        <label class="control-label col-md-12">Street Address</label>
+        <div class="col-md-4"> <input class="form-control" type="text" formControlName="address"> </div>
+        <span class="text-danger" *ngIf="address.invalid && formDir.submitted">
+          Must be 50 characters or less.
+        </span>
+      </div>
+
+      <div class="form-group row">
+        <label class="control-label col-md-12">City</label>
+        <div class="col-md-4"> <input class="form-control" type="text" formControlName="city"> </div>
+        <span class="text-danger" *ngIf="city.invalid && formDir.submitted">
+          Must be 40 characters or less.
+        </span>
+      </div>
+
+      <div class="form-group row">
+        <label class="control-label col-md-12">State</label>
+        <div class="col-md-4">
+          <select class="form-control" formControlName="state">
+            <option value="">--Select State--</option>
+            <option *ngFor="let state of stateList" value={{state}}>{{state}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="control-label col-md-12">Postcode</label>
+        <div class="col-md-4"> <input class="form-control" type="text" formControlName="postCode"> </div>
+        <span class="text-danger" *ngIf="postCode.invalid && formDir.submitted">
+          Required, must be 4 digits.
+        </span>
+      </div>
+
+      <div class="form-group row">
+        <label class="control-label col-md-12">Phone</label>
+        <div class="col-md-4"> <input class="form-control" type="text" formControlName="phone"> </div>
+        <span class="text-danger" *ngIf="phone.invalid && formDir.submitted">
+          Must be in format "(61)- ### ### ###".
+        </span>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-dark">Submit</button>
+        <button type="button" class="btn btn-light ml-3" [routerLink]="['/customers']">Cancel</button>
+      </div>
+  </form>
+</div>

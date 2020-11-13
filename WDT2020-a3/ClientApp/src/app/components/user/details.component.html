@@ -1,0 +1,32 @@
+<p *ngIf="!user"><em>Loading...</em></p>
+
+<div class="card mb-5 mb-lg-0">
+    <div class="card-body">
+        <h5 class="text-muted text-uppercase text-center">{{customer?.customerName}}</h5>
+        <h6 class="card-price text-center"><span class="period">Customer ID: {{user?.customerId}}</span></h6>
+        <hr>
+        <ul>
+            <li>User ID</li>
+            <li class="indent">{{user?.userId}}</li>
+            <li>Last Modified</li>
+            <li class="indent">{{user?.modifyDate| date:'medium' }}</li>
+            <li>Password Attempts</li>
+            <li class="indent">{{user?.passwordAttempts}}</li>
+            <li>Account Status</li>
+            <li class="indent">{{user?.blockedAccount ? "Blocked" : "Active"}}</li>
+            <li>Phone</li>
+            <li class="indent">{{customer?.phone}}</li>
+            <li>Residential Postcode</li>
+            <li class="indent">{{customer?.postCode}}</li>
+        </ul>
+        <button *ngIf="!user?.blockedAccount" type="button" class="btn btn-outline-danger"
+                (click)="triggerButton()">
+            Block Account
+        </button>
+        <button *ngIf="user?.blockedAccount" type="button" class="btn btn-outline-success"
+                (click)="triggerButton()">
+            Activate Account
+        </button>
+        <button type="button" class="btn btn-link" (click)="backClicked()">Go Back</button>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="container main">
+    <div class="row">
+        <h1 *ngIf="!customerId">Scheduled BillPays</h1>
+        <h1 class="col-10" *ngIf="customerId">Scheduled BillPays of Customer {{ customerId }}</h1>
+        <span><button *ngIf="customerId" class="btn btn-light" [routerLink]="['/customers']">Back to customers</button></span>
+    </div>
+    <br>
+
+    <p *ngIf="!billList"><em>Loading...</em></p>
+
+    <table class='table' *ngIf="billList">
+
+        <thead>
+            <tr>
+                <th>BillPayId</th>
+                <th>Account Number</th>
+                <th>PayeeID</th>
+                <th>Amount</th>
+                <th>Schedule Date</th>
+                <th>Period</th>
+                <th>Modify Date</th>
+                <th>Bill Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let bill of billList">
+                <td>{{ bill.billPayId }}</td>
+                <td>{{ bill.accountNumber }}</td>
+                <td>{{ bill.payeeId }}</td>
+                <td>{{ bill.amount | currency }}</td>
+                <td>{{ bill.scheduleDate | date:'medium' }}</td>
+                <td>{{ bill.period }}</td>
+                <td>{{ bill.modifyDate | date:'medium' }}</td>
+                <td>
+                    <button *ngIf="bill.blockedBillPay"  type="button" class="btn btn-danger" (click)="updateStatus(bill.billPayId)">Blocked</button>
+                    <button *ngIf="!bill.blockedBillPay" type="button" class="btn btn-outline-primary" (click)="updateStatus(bill.billPayId)">Active</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

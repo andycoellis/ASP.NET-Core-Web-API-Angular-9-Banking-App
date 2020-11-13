@@ -1,0 +1,56 @@
+<div class="container main">
+    <div class="row">
+        <h1 *ngIf="!accountNumber">Transactions Statement</h1>
+        <h1 class="col-10" *ngIf="accountNumber">Statement of account {{ accountNumber }}</h1>
+        <span><button *ngIf="accountNumber" class="btn btn-light" [routerLink]="['/customers']">Back to Customers</button></span>
+    </div>
+    <p *ngIf="!transactionList"><em>Loading...</em></p>
+
+    <div *ngIf="transactionList">
+        <div class="row">
+            <div class="col-5">
+                <label>Search</label>
+                <input id="search" type="text" class="form-control" (keyup)="filter()" />
+            </div>
+            <div class="col-3">
+                <label>Start Date</label>
+                <input id="startDate" type="date" class="form-control" value="2019-01-01" (change)="filter()" />
+            </div>
+            <div class="col-3">
+                <label>End Date</label>
+                <input id="endDate" type="date" class="form-control" value="2020-02-20" (change)="filter()" />
+            </div>
+            <div class="col-1">
+                <label>Charts</label>
+                <button class="btn btn-dark" *ngIf="!accountNumber" [routerLink]="['/charts']">View</button>
+                <button class="btn btn-dark" *ngIf="accountNumber" [routerLink]="['/charts', accountNumber]">View</button>
+            </div>
+        </div>
+        <br>
+        <table class='table'>
+            <thead>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Transaction Type</th>
+                    <th>Account Number</th>
+                    <th>Destination Account</th>
+                    <th>Amount</th>
+                    <th>Comment</th>
+                    <th>Modify Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let t of transactionList">
+                    <td>{{ t.transactionId }}</td>
+                    <td>{{ t.transactionType }}</td>
+                    <td>{{ t.accountNumber }}</td>
+                    <td>{{ t.destAccount }}</td>
+                    <td>{{ t.amount | currency }}</td>
+                    <td>{{ t.comment }}</td>
+                    <td>{{ t.modifyDate | date:'medium' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

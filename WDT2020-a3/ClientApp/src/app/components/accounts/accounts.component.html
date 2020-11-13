@@ -1,0 +1,23 @@
+<div class="container main">
+    <h1>Accounts of Customer {{ customerId }}</h1>
+    <br>
+
+    <p *ngIf="!accountsList"><em>Loading...</em></p>
+
+    <div class="row" *ngIf="accountsList">
+        <div class="card col-6" *ngFor="let a of accountsList">
+            <div class="card-body">
+                <h4 class="card-title">Account Number: {{ a.accountNumber }}</h4>
+                <table class="table">
+                    <tr><td>Account Type</td><td>{{ a.accountType }}</td></tr>
+                    <tr><td>Balance</td><td>{{ a.balance | currency }}</td></tr>
+                    <tr><td>Opening Date</td><td>{{ a.modifyDate | date:'medium' }}</td></tr>
+                    <tr>
+                        <td><a class="btn btn-dark" [routerLink]="['/statement', a.accountNumber]">View Transactions</a></td>
+                        <td><a class="btn btn-dark" [routerLink]="['/charts', a.accountNumber]">View Charts</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

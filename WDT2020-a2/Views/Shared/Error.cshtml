@@ -1,0 +1,40 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+@if (ViewBag.ErrorStatus == null)
+{
+    <h1 class="text-danger">Error.</h1>
+    <h2 class="text-danger">An error occurred while processing your request.</h2>
+
+    @if (Model.ShowRequestId)
+    {
+        <p>
+            <strong>Request ID:</strong> <code>@Model.RequestId</code>
+        </p>
+    }
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="error-template">
+                    <h1>Oops!</h1>
+                    <h2>@ViewBag.ErrorStatus</h2>
+                    <div class="error-details">
+                        @ViewBag.Message
+                    </div>
+                    <hr />
+                    <div class="error-actions">
+                        <a class="btn btn-primary btn-md" asp-action="Index">
+                            Take Me Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

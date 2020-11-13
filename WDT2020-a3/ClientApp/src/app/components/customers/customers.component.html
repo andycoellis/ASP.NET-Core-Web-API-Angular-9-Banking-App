@@ -1,0 +1,40 @@
+<div class="container main">
+    <h1>List of Customers</h1>
+    <br>
+
+    <p *ngIf="!customerList"><em>Loading...</em></p>
+
+    <table class='table' *ngIf="customerList">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th>Tax File Number</th>
+                <th>Address, City</th>
+                <th>State, Postcode</th>
+                <th>Phone Number</th>
+                <th>Update Details</th>
+                <th>View Accounts</th>
+                <th>View Billpays</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let c of customerList">
+                <td>{{ c.customerId }}</td>
+                <td>{{ c.customerName }}</td>
+                <td>{{ c.tfn }}</td>
+                <td>{{ c.address }}, {{ c.city }}</td>
+                <td>{{ c.state }}, {{ c.postCode }}</td>
+                <td>{{ c.phone }}</td>
+                <td><button class="btn btn-dark" [routerLink]="['/customer/edit', c.customerId]">Update</button></td>
+                <td><button class="btn btn-dark" [routerLink]="['/accounts', c.customerId]">Accounts</button></td>
+                <td><button class="btn btn-dark" [routerLink]="['/billpay', c.customerId]">BillPays</button></td>
+                <td><button class="btn btn-danger" (click)="deleteCustomer(c.customerId)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-dark" [routerLink]="['/customer/add']">Add New Customer</button>
+</div>

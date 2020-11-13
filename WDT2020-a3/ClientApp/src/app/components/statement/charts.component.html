@@ -1,0 +1,24 @@
+<div class="container main">
+    <div class="row">
+        <h1 class="col-10" *ngIf="!accountNumber">Transactions Charts</h1>
+        <span><button *ngIf="!accountNumber" class="btn btn-light" [routerLink]="['/statement']">Back to Transactions</button></span>
+
+        <h1 class="col-10" *ngIf="accountNumber">Transaction Charts of Account {{ accountNumber }}</h1>
+        <span><button *ngIf="accountNumber" class="btn btn-light" [routerLink]="['/statement', accountNumber]">Back to Transactions</button></span>
+    </div>
+    <br>
+    <div class="card">
+        <h3 class="card-header">Transaction Type Count</h3>
+        <canvas class="card-body" id="typesCountChart"></canvas>
+    </div>
+    <br>
+    <div class="card">
+        <h3 class="card-header">Past Week of Transactions</h3>
+        <canvas class="card-body" id="pastWeekCountChart"></canvas>
+    </div>
+    <br>
+    <div class="card">
+        <h3 class="card-header">Cash Flow of Account</h3>
+        <canvas class="card-body" id="cashFlowChart"></canvas>
+    </div>
+</div>

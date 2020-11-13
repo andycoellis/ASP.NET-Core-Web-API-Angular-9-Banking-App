@@ -1,0 +1,45 @@
+<div class="container main">
+    <h1>User Logins</h1>
+
+    <p *ngIf="!userList"><em>Loading...</em></p>
+
+    <table class='table' *ngIf="userList">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Login ID</th>
+                <th>Last Modified</th>
+                <th>Account Status</th>
+                <th *ngIf="blocked">
+                    <button type="button" class="btn btn-secondary btn-sm"
+                            (click)="showBlocked()">
+                        Blocked
+                    </button>
+                </th>
+                <th *ngIf="!blocked">
+                    <button type="button" class="btn btn-primary btn-sm"
+                            (click)="showBlocked()">
+                        All
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let u of userList">
+                <td>{{ u.customerId }}</td>
+                <td>{{ u.userId }}</td>
+                <td>{{ u.modifyDate | date:'medium' }}</td>
+                <td *ngIf="u.blockedAccount">
+                    <button type="button" class="btn btn-danger" (click)="triggerButton(u.customerId)">Blocked</button>
+                </td>
+                <td *ngIf="!u.blockedAccount">
+                    <button type="button" class="btn btn-outline-primary" (click)="triggerButton(u.customerId)">Active</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-link" [routerLink]="['/users/details', u.customerId]">Details</button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

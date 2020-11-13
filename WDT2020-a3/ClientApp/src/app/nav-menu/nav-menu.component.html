@@ -1,0 +1,48 @@
+<header>
+    <nav class="navbar navbar-expand navbar-toggleable-sm navbar-dark bg-dark" *ngIf="currentUser">
+        <div class="container">
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse"
+                    aria-label="Toggle navigation"
+                    [attr.aria-expanded]="isExpanded"
+                    (click)="toggle()">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+                 [ngClass]="{ show: isExpanded }">
+
+                <ul class="navbar-nav flex-grow">
+
+                    <li class="nav-item"
+                        [routerLinkActive]="['link-active']"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                    </li>
+
+                    <li>
+                        <a class="nav-item nav-link" routerLink="/">Home</a>
+                    </li>
+                    <li>
+                        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+                    </li>
+                    <li>
+                        <a class="nav-item nav-link" routerLink="/statement">Statement</a>
+                    </li>
+                    <li>
+                        <a class="nav-item nav-link" routerLink="/customers">Customers</a>
+                    </li>
+                    <li>
+                        <a class="nav-item nav-link" routerLink="/users">User Logins</a>
+                    </li>
+                    <li>
+                        <a class="nav-item nav-link" routerLink="/billpay">BillPays</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
